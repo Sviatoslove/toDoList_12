@@ -40,7 +40,7 @@ function App() {
   const setValueTodosData = (e) => {
     if(inputValue !== undefined) {
       e.stopPropagation();
-      todosItems.push(new CreateTodosItem(todosItems[todosItems.length - 1].id + 1, inputValue, false));
+      todosItems.push(new CreateTodosItem(todosItems.length + 1, inputValue, false));
       localStorage.setItem('cases', JSON.stringify(todosItems));
       return !length;
     }
