@@ -3,11 +3,14 @@ import './ToDoItem.scss'
 
 const ToDoItem = props => {
  const resolvedClass = {
-  textDecoration: 'line-through'
+  textDecoration: 'line-through',
+  textDecorationStyle: 'wavy'
  }
  return(
   <div className='todo-item'>
-   <p className='description' style={props.completed === true ? resolvedClass : {}}>{props.description}</p>
+    <p className='description' style={props.completed === true ? resolvedClass : {}}>
+      {props.description}
+    </p>
     <input
      type="checkbox"
      defaultChecked={props.completed}

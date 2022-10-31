@@ -16,6 +16,8 @@ function App() {
 
   const todosItems = todosData();
 
+  let[inputValue, setInput] = useState('');
+
   const[length, changeLength] = useState(false);
 
   const[itemIdx, setDelete] = useState(false);
@@ -31,17 +33,17 @@ function App() {
     return !active;
   }
 
-  let inputValue;
-
   const getValueOfInput = event => {
     inputValue = event.target.value;
+    return inputValue;
   }
 
-  const setValueTodosData = (e) => {
+  const setValueTodosData = (e, event) => {
     if(inputValue !== undefined) {
       e.stopPropagation();
       todosItems.push(new CreateTodosItem(todosItems.length + 1, inputValue, false));
       localStorage.setItem('cases', JSON.stringify(todosItems));
+      setInput('')
       return !length;
     }
   }
@@ -69,7 +71,7 @@ function App() {
   return (
     <div className="App">
       <div className='form__input'>
-        <input className='input__deal' onChange={getValueOfInput}placeholder="Введите дело"/>
+        <input className='input__deal' value={inputValue} onChange={event => setInput(getValueOfInput(event))}placeholder="Введите дело"/>
         <button className='btnAdd' onClick={e => changeLength(setValueTodosData(e))}>
           Добавить делo
         </button>
